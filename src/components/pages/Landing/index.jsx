@@ -4,7 +4,7 @@
 // import paperStack from '../../../assets/paper-stack.jpg';
 import { useNavigate } from 'react-router-dom';
 import { useDownloadData } from '../../../hooks/useDownloadData.js';
-import {decodeBase64} from '../../../utils/decodeBase64.js';
+import { decodeBase64 } from '../../../utils/decodeBase64.js';
 
 /**
  * TODO: Ticket 1:
@@ -33,7 +33,7 @@ export const LandingPage = () => {
   return (
     <div className='flex-c w-[100vw] secondary-c'>
       Landing Page
-      <div>{'Type this into Canvas: ' + decodeBase64('VGltZTJDb2RlIQ==')}</div>
+      <div>{}</div>
     </div>
   );
 };
