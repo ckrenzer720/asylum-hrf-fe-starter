@@ -13,7 +13,7 @@ import { humanRightFirstURL } from '../../../constants.js';
  * Implement any button functionality implied by the landing page screenshot example (tickets/examples)
  */
 export const LandingPage = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { downloadCSV } = useDownloadData();
 
   const scrollToTop = () => {
@@ -56,7 +56,9 @@ export const LandingPage = () => {
             </div>
           </div>
           <div className='flex align-center mx-auto gap-8 font-body'>
-            <button className='bg-[#aaa] px-[10px] py-[5px] text-white text-md font-semibold'>View the Data</button>
+            <button className='bg-[#aaa] px-[10px] py-[5px] text-white text-md font-semibold' onClick={() => navigate('/graphs')}>
+              View the Data
+            </button>
             <button className='bg-[#aaa] px-[10px] py-[5px] text-white text-md font-semibold' onClick={downloadCSV}>
               Download the Data
             </button>
