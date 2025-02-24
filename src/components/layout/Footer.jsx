@@ -1,13 +1,12 @@
 import Logo from '../../assets/logo.png';
+import { humanRightFirstURL } from '../../constants';
 
 export default function Footer() {
   return (
     <footer className='flex-c w-[100%] primary-c justify-between px-14 text-amber-50'>
       <section className='footer-details flex pt-4 pb-8 relative'>
-        <div className='flex justify-between absolute top-4 left-0'>
-          <a href='https://www.humanrightsfirst.org/'>
-            <img className='w-[100px]' src={Logo} alt='HRF logo white' />
-          </a>
+        <div className='flex justify-between absolute top-4 left-0' onClick={() => window.open(humanRightFirstURL, '_blank')} style={{ cursor: 'pointer' }}>
+          <img className='w-[100px]' src={Logo} alt='HRF logo white' />
         </div>
         <div className='footer-address flex-c-1 pt-4'>
           <p>Human Rights First</p>

@@ -1,6 +1,7 @@
 import Logo from '../../assets/logo.png';
 import { LoggingButtons } from '../../auth/LoggingButtons.jsx';
 import { NavLink } from 'react-router-dom';
+import { humanRightFirstURL } from '../../constants';
 
 /**
  * TODO: Ticket 3:
@@ -13,7 +14,7 @@ export default function Header() {
   return (
     <header className='flex w-[100%] primary-c justify-between px-14'>
       <div className='flex justify-between'>
-        <NavLink to='https://www.humanrightsfirst.org/'>
+        <NavLink onClick={() => window.open(humanRightFirstURL, '_blank')} style={{ cursor: 'pointer' }}>
           <img className='w-[100px]' src={Logo} alt='HRF logo white' />
         </NavLink>
       </div>
