@@ -9,16 +9,17 @@ body {
     padding: 0;
 }
 
+/* changed color cause didn't like the brown */
 .primary-c {
-    @apply bg-[#666555]
+    @apply bg-[#4c1c24]
 }
 
 .secondary-c {
-    @apply bg-[#f9f9f9]
+    @apply bg-[#f9f9f9] 
 }
 
 .flex-c {
-    @apply flex flex-col
+    @apply flex flex-col;
 }
 
 .flex-c-1 {
@@ -28,3 +29,5 @@ body {
 .nav-btn {
    @apply text-[#E2F0F7] hover:border-[#E2F0F7] border-transparent border-2 px-3 py-2 rounded-xl
 }
+
+
