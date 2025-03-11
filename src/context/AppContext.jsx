@@ -4,6 +4,9 @@ import testData from '../data/test_data.json';
 import { useLocalStorage } from '../hooks/useLocalStorage.js';
 
 const AppContext = createContext({});
+const API_URL = 'https://hrf-asylum-be-b.herokuapp.com/cases';
+// Fiscal Year Data: `/fiscalSummary`
+// Citizenship Data: `/citizenshipSummary`
 
 /**
  * TODO: Ticket 2:
@@ -13,14 +16,20 @@ const AppContext = createContext({});
  */
 const useAppContextProvider = () => {
   const [graphData, setGraphData] = useState(testData);
+  // console.log(graphData.yearResults);
   const [isDataLoading, setIsDataLoading] = useState(false);
 
   useLocalStorage({ graphData, setGraphData });
 
-  const getFiscalData = () => {
+  const getFiscalData = async () => {
     // TODO: Replace this with functionality to retrieve the data from the fiscalSummary endpoint
-    const fiscalDataRes = testData;
-    return fiscalDataRes;
+    try {
+      const response = await axios.get(`${API_URL}/fiscalSummary`);
+      setGraphData(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const getCitizenshipResults = async () => {
@@ -35,6 +44,13 @@ const useAppContextProvider = () => {
 
   const fetchData = async () => {
     // TODO: fetch all the required data and set it to the graphData state
+    try {
+      await getFiscalData();
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setIsDataLoading(false);
+    }
   };
 
   const clearQuery = () => {
