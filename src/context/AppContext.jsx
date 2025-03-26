@@ -5,37 +5,25 @@ import { useLocalStorage } from '../hooks/useLocalStorage.js';
 
 const AppContext = createContext({});
 const API_URL = 'https://hrf-asylum-be-b.herokuapp.com/cases';
-// Fiscal Year Data: `/fiscalSummary`
-// Citizenship Data: `/citizenshipSummary`
 
-/**
- * TODO: Ticket 2:
- * - Use axios to fetch the data
- * - Store the data
- * - Populate the graphs with the stored data
- */
 const useAppContextProvider = () => {
   const [graphData, setGraphData] = useState(testData);
-  // console.log(graphData.yearResults);
   const [isDataLoading, setIsDataLoading] = useState(false);
 
   useLocalStorage({ graphData, setGraphData });
 
   const getFiscalData = async () => {
-    // TODO: Replace this with functionality to retrieve the data from the fiscalSummary endpoint
-    try {
-      const response = await axios.get(`${API_URL}/fiscalSummary`);
-      setGraphData(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error.message);
-    }
+    const fiscalRes = await axios.get(`${API_URL}/fiscalSummary`);
+    // console.log(fiscalRes);
+    const fiscalResData = fiscalRes.data;
+    return fiscalResData;
   };
 
   const getCitizenshipResults = async () => {
-    // TODO: Replace this with functionality to retrieve the data from the citizenshipSummary endpoint
-    const citizenshipRes = testData.citizenshipResults;
-    return citizenshipRes;
+    const citizenRes = await axios.get(`${API_URL}/citizenshipSummary`);
+    // console.log(citizenRes.data);
+    const citizenData = citizenRes.data;
+    return citizenData;
   };
 
   const updateQuery = async () => {
@@ -43,14 +31,12 @@ const useAppContextProvider = () => {
   };
 
   const fetchData = async () => {
-    // TODO: fetch all the required data and set it to the graphData state
-    try {
-      await getFiscalData();
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setIsDataLoading(false);
-    }
+    const [fiscalData, citizenshipResults] = await Promise.all([
+      getFiscalData(),
+      getCitizenshipResults()
+    ]);
+    setGraphData({ ...fiscalData, citizenshipResults });
+    setIsDataLoading(false);
   };
 
   const clearQuery = () => {
