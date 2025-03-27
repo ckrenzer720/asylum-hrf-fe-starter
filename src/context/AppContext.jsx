@@ -6,6 +6,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage.js';
 const AppContext = createContext({});
 const API_URL = 'https://hrf-asylum-be-b.herokuapp.com/cases';
 
+
 const useAppContextProvider = () => {
   const [graphData, setGraphData] = useState(testData);
   const [isDataLoading, setIsDataLoading] = useState(false);
@@ -14,14 +15,12 @@ const useAppContextProvider = () => {
 
   const getFiscalData = async () => {
     const fiscalRes = await axios.get(`${API_URL}/fiscalSummary`);
-    // console.log(fiscalRes);
     const fiscalResData = fiscalRes.data;
     return fiscalResData;
   };
 
   const getCitizenshipResults = async () => {
     const citizenRes = await axios.get(`${API_URL}/citizenshipSummary`);
-    // console.log(citizenRes.data);
     const citizenData = citizenRes.data;
     return citizenData;
   };
