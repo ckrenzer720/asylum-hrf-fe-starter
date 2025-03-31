@@ -1,15 +1,8 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
-/**
- * TODO: Ticket 3:
- * Implement authentication using Auth0:
- * - Get the user data from Auth0
- * - Create and style the component
- * - Display the data
- * - Make this page a protected Route
- */
+
 const Profile = () => {
-  // TODO: Replace these with functionality from Auth0
+  // Auth0 functionality
   const { isLoading, logout, user } = useAuth0();
 
   if (isLoading || !user) {
