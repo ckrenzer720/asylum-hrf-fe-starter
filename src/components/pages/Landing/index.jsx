@@ -7,24 +7,19 @@ import { useDownloadData } from '../../../hooks/useDownloadData.js';
 import { decodeBase64 } from '../../../utils/decodeBase64.js';
 import { humanRightFirstURL } from '../../../constants.js';
 
-/**
- * TODO: Ticket 1:
- * Implement structure and styles of the Landing page using Tailwind
- * Implement any button functionality implied by the landing page screenshot example (tickets/examples)
- */
 export const LandingPage = () => {
   const navigate = useNavigate();
   const { downloadCSV } = useDownloadData();
 
   const scrollToTop = () => {
-    let scrollStep = -window.scrollY / 20; // Adjust the divisor for speed
+    let scrollStep = -window.scrollY / 20;
     let scrollInterval = setInterval(() => {
       if (window.scrollY === 0) {
         clearInterval(scrollInterval);
       } else {
         window.scrollBy(0, scrollStep);
       }
-    }, 10); // Adjust the interval time for smoothness
+    }, 10);
   };
 
   return (
@@ -119,7 +114,6 @@ export const LandingPage = () => {
       </section>
 
       <section className='read-more-section'>
-        {/* added this onlick event to open the link in a new tab; adding rel="noopener noreferrer" with open the link in a new private window, preventing data leakage*/}
         <button className='primary-c text-white px-4 py-2 rounded-lg hover:opacity-85 scale-105' onClick={() => window.open(humanRightFirstURL, '_blank')}>
           Read More
         </button>

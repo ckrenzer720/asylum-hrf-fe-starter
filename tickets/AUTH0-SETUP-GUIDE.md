@@ -7,7 +7,7 @@ This guide will walk you through setting up Auth0 authentication in your React S
 - Node.js (v14 or later)
 - npm or yarn
 - A React application (Create React App or similar)
-- An Auth0 account (free tier available at [auth0.com](https://auth0.com))
+- An Auth0 account (free tier available at [auth0.com](https://autkh0.com))
 
 ## 1. Set Up Auth0 Application
 
@@ -42,7 +42,7 @@ export const Auth0ProviderWithConfig = ({ children }) => {
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
-  const onRedirectCallback = (appState) => {
+  const onRedirectCallback = appState => {
     navigate(appState?.returnTo || window.location.pathname);
   };
 
@@ -51,7 +51,7 @@ export const Auth0ProviderWithConfig = ({ children }) => {
       domain={domain}
       clientId={clientId}
       authorizationParams={{
-        redirect_uri: window.location.origin
+        redirect_uri: window.location.origin,
       }}
       onRedirectCallback={onRedirectCallback}
     >
@@ -76,14 +76,12 @@ Update your `src/index.js` or `src/App.js`:
 
 ```jsx
 import { BrowserRouter } from 'react-router-dom';
-import { Auth0ProviderWithConfig } from './auth/auth0-provider-with-config';
+import { Auth0ProviderWithConfig } from './auth/auth0-provider-with-config.jsx';
 
 function App() {
   return (
     <BrowserRouter>
-      <Auth0ProviderWithConfig>
-        {/* Your app components */}
-      </Auth0ProviderWithConfig>
+      <Auth0ProviderWithConfig>{/* Your app components */}</Auth0ProviderWithConfig>
     </BrowserRouter>
   );
 }
@@ -99,21 +97,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 function LoginButton() {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
 
-  return !isAuthenticated && (
-    <button onClick={() => loginWithRedirect()}>
-      Log In
-    </button>
-  );
+  return !isAuthenticated && <button onClick={() => loginWithRedirect()}>Log In</button>;
 }
 
 function LogoutButton() {
   const { logout, isAuthenticated } = useAuth0();
 
-  return isAuthenticated && (
-    <button onClick={() => logout({ returnTo: window.location.origin })}>
-      Log Out
-    </button>
-  );
+  return isAuthenticated && <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>;
 }
 
 function Profile() {
@@ -123,12 +113,14 @@ function Profile() {
     return <div>Loading...</div>;
   }
 
-  return isAuthenticated && (
-    <div>
-      <img src={user.picture} alt={user.name} />
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
-    </div>
+  return (
+    isAuthenticated && (
+      <div>
+        <img src={user.picture} alt={user.name} />
+        <h2>{user.name}</h2>
+        <p>{user.email}</p>
+      </div>
+    )
   );
 }
 ```
@@ -148,7 +140,7 @@ export const ProtectedRoute = ({ children }) => {
     return <div>Loading...</div>;
   }
 
-  return isAuthenticated ? children : <Navigate to="/" replace />;
+  return isAuthenticated ? children : <Navigate to='/' replace />;
 };
 ```
 
@@ -161,14 +153,14 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<PublicPage />} />
-      <Route 
-        path="/protected" 
+      <Route path='/' element={<PublicPage />} />
+      <Route
+        path='/protected'
         element={
           <ProtectedRoute>
             <ProtectedPage />
           </ProtectedRoute>
-        } 
+        }
       />
     </Routes>
   );
@@ -200,6 +192,7 @@ For production deployment, make sure to:
 ## Support
 
 For issues and questions:
+
 - Check the [Auth0 Community](https://community.auth0.com/)
 - Review [Auth0 Documentation](https://auth0.com/docs/)
 - Contact Auth0 Support through your dashboard
