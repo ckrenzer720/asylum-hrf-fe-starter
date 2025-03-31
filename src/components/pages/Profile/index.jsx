@@ -1,3 +1,5 @@
+import { useAuth0 } from '@auth0/auth0-react';
+import React from 'react';
 /**
  * TODO: Ticket 3:
  * Implement authentication using Auth0:
@@ -15,9 +17,7 @@ const Profile = () => {
     return <div className='text-center p-4'>Loading...</div>;
   }
 
-  return (
-    <div>Profile Page</div>
-  );
+  return <div>Profile Page</div>;
 };
 
 export default Profile;
