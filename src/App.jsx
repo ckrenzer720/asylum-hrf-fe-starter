@@ -5,6 +5,11 @@ import { GraphsPage } from './components/pages/DataVisualizations/GraphsPage.jsx
 import { NotFoundPage } from './components/pages/NotFound/index.jsx';
 import Profile from './components/pages/Profile/index.jsx';
 import { pageWrapper } from './components/layout/PageWrapper.jsx';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+
+const ProtectedProfile = withAuthenticationRequired(Profile, {
+  onRedirecting: () => <div className='text-center p-4'>Redirecting to login...</div>,
+});
 
 export const App = () => {
   return (
@@ -12,7 +17,7 @@ export const App = () => {
       <Routes>
         <Route path='/' element={pageWrapper(<LandingPage />)} />
         <Route path='/graphs' element={pageWrapper(<GraphsPage />)} />
-        <Route path='/profile' element={pageWrapper(<Profile />)} />
+        <Route path='/profile' element={pageWrapper(<ProtectedProfile />)} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </div>

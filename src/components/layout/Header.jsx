@@ -1,6 +1,7 @@
 import Logo from '../../assets/logo.png';
 import { LoggingButtons } from '../../auth/LoggingButtons.jsx';
 import { NavLink } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import { humanRightFirstURL } from '../../constants';
 
 /**
@@ -9,7 +10,7 @@ import { humanRightFirstURL } from '../../constants';
  */
 export default function Header() {
   // TODO: Replace me
-  const isAuthenticated = false;
+  const { isAuthenticated } = useAuth0();
 
   return (
     <header className='flex w-[100%] primary-c justify-between px-14'>
