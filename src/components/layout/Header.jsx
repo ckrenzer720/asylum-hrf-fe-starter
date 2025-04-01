@@ -4,6 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { humanRightFirstURL } from '../../constants';
 
+/**
+ * TODO: Ticket 3:
+ * Implement authentication using Auth0
+ */
+
 export default function Header() {
   const { isAuthenticated } = useAuth0();
 
