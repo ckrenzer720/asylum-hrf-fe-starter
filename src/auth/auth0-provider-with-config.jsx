@@ -6,12 +6,8 @@ export const Auth0ProviderWithConfig = ({ children }) => {
   const domain = import.meta.env.VITE_AUTH0_DOMAIN;
   const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 
-  console.log('Auth0 Domain:', domain);
-  console.log('Auth0 Client ID:', clientId);
-
   const onRedirectCallback = appState => {
-    console.log('Redirect Callback AppState:', appState);
-    navigate(appState?.returnTo || '/');
+    navigate(appState?.returnTo || '/profile');
   };
 
   return (
