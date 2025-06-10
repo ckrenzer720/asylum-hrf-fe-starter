@@ -4,7 +4,7 @@ import testData from '../data/test_data.json';
 import { useLocalStorage } from '../hooks/useLocalStorage.js';
 
 const AppContext = createContext({});
-const API_URL = 'https://hrf-asylum-be-b.herokuapp.com/cases';
+const API_URL = 'https://asylum-be.onrender.com';
 
 const useAppContextProvider = () => {
   const [graphData, setGraphData] = useState(testData);
