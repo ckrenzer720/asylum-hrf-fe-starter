@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* changed color cause didn't like the brown */
+.primary-c {
+    @apply bg-[#4c1c24]
+}
+
+.secondary-c {
+    @apply bg-[#f9f9f9] 
+}
+
+.flex-c {
+    @apply flex flex-col;
+}
+
+.flex-c-1 {
+    @apply flex flex-col flex-1
+}
+
+.nav-btn {
+   @apply text-[#E2F0F7] hover:border-[#E2F0F7] border-transparent border-2 px-3 py-2 rounded-xl
+} 
