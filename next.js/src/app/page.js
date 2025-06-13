@@ -2,14 +2,10 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useDownloadData } from '../hooks/useDownloadData.js';
 import { humanRightFirstURL } from '../constants';
-import { useState, useEffect } from 'react';
 
 export default function Home() {
-  console.log('Home page rendering');
   const router = useRouter();
-  const { downloadCSV } = useDownloadData();
 
   const scrollToTop = () => {
     let scrollStep = -window.scrollY / 20;
@@ -21,26 +17,6 @@ export default function Home() {
       }
     }, 10);
   };
-
-  // Add a simple loading state
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading completion
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p>Loading...</p>
-      </div>
-    );
-  }
 
   return (
     <div className='flex-c w-[100vw] secondary-c'>
@@ -96,7 +72,7 @@ export default function Home() {
             </button>
             <button 
               className='bg-[#aaa] px-[10px] py-[5px] text-white text-md font-semibold rounded-lg hover:opacity-85 scale-105' 
-              onClick={downloadCSV}
+              onClick={() => console.log('Download functionality coming soon')}
             >
               Download the Data
             </button>

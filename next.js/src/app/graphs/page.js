@@ -5,7 +5,7 @@ import { getMapView } from '../../components/pages/DataVisualizations/getMapView
 
 export default function GraphsPage() {
   return (
-    <div className="graphs-page">
+    <div className="graphs-page p-8">
       {getGraphsHeader()}
       {getMapView()}
     </div>
